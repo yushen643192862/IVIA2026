@@ -1,0 +1,37 @@
+{
+  "source_csv": "C:\\Users\\lenovo\\Desktop\\智能视觉信息采集\\lab1\\RawData\\scan_2026-09-18_16-04-47_424687\\scan_parameters.csv",
+  "output_csv": "C:\\Users\\lenovo\\Desktop\\智能视觉信息采集\\lab1\\RawData\\scan_2026-09-18_16-04-47_424687\\noise_analysis\\noise_features.csv",
+  "roi_xyxy_exclusive": [
+    682,
+    415,
+    889,
+    830
+  ],
+  "expected_image_size_wh": [
+    2592,
+    1944
+  ],
+  "gaussian_kernel": 5,
+  "gaussian_sigma": 1.0,
+  "grayscale": "0.114 B + 0.587 G + 0.299 R, float32, scale 0..255",
+  "noise_method": "std of ROI minus GaussianBlur; ddof=1; kernel//2 border excluded",
+  "interpretation": "Single-image high-frequency spatial residual proxy; not temporal sensor noise. No filter-gain correction.",
+  "brightness": "roi_mean_gray: full ROI mean; image_mean_gray: whole-image mean",
+  "fit_candidate_rule": {
+    "roi_mean_range_inclusive": [
+      5.0,
+      250.0
+    ],
+    "near_black_gray_le": 1.0,
+    "near_white_gray_ge": 254.0,
+    "channel_saturation_any_bgr_ge": 254,
+    "max_fraction_inclusive": 0.01,
+    "note": "Heuristic quality flags only; all records retained. Texture is not automatically screened."
+  },
+  "total_records": 696,
+  "successful": 696,
+  "errors": 0,
+  "fit_candidates": 254,
+  "preview_source_filename": "e2000g17.bmp",
+  "noise_units": "gray levels (std), gray levels squared (variance)"
+}

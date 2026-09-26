@@ -1,0 +1,96 @@
+{
+  "formula": "sigma = a0 + a1*e + a2*g + a3*e*g + a4*e^2 + a5*g^2 + a6*e^3 + a7*e^2*g + a8*e*g^2 + a9*g^3",
+  "polynomial_degree": 3,
+  "selected_model": false,
+  "method": "Ordinary least squares, no regularization, no clipping of predictions",
+  "features": {
+    "e": "actual_exposure_us (microseconds)",
+    "g": "actual_gain_db (dB)"
+  },
+  "target": "noise_std_gray: single-image high-frequency residual standard deviation",
+  "filter": "fit_candidate == 1 and status == ok",
+  "seed": 42,
+  "validation_fraction_requested": 0.2,
+  "validation_rounding": "ceil",
+  "validation_fraction_actual": 0.20078740157480315,
+  "coefficients_original_units": {
+    "a0": 0.21161061226491362,
+    "a1": 8.426852490692027e-05,
+    "a2": 0.05968998481853313,
+    "a3": 2.126177707842984e-06,
+    "a4": -2.835099128398536e-09,
+    "a5": -0.0030777070660004233,
+    "a6": 3.3732337174835975e-14,
+    "a7": -1.7543933935217355e-10,
+    "a8": 1.905986513789952e-07,
+    "a9": 8.049094599796029e-05
+  },
+  "coefficient_term_order": [
+    "1",
+    "e",
+    "g",
+    "e*g",
+    "e^2",
+    "g^2",
+    "e^3",
+    "e^2*g",
+    "e*g^2",
+    "g^3"
+  ],
+  "standardization_training_only": {
+    "center_e_g": [
+      6705.320197044335,
+      10.427512072224175
+    ],
+    "scale_e_g": [
+      7826.900075952905,
+      6.417188398552628
+    ]
+  },
+  "coefficients_standardized": [
+    1.2437627842222068,
+    0.5413062171624698,
+    0.3515487113358784,
+    0.18826788999734184,
+    -0.24417992970247032,
+    0.029578943674580832,
+    0.01617393899465136,
+    -0.06896859067840358,
+    0.06143264184076288,
+    0.021270681304042215
+  ],
+  "training_matrix_rank": 10,
+  "training_matrix_condition_number": 116.06415983594394,
+  "training_ranges": {
+    "exposure_us": [
+      10.0,
+      50000.0
+    ],
+    "gain_db": [
+      1.0230504489476258,
+      24.014274679280266
+    ]
+  },
+  "training_metrics": {
+    "n": 203,
+    "MAE": 0.0848383437360654,
+    "MSE": 0.013894443085892116,
+    "RMSE": 0.11787469230454906,
+    "R2": 0.9135120680654084,
+    "negative_predictions": 0
+  },
+  "validation_metrics": {
+    "n": 51,
+    "MAE": 0.11785554423322883,
+    "MSE": 0.024955368337530634,
+    "RMSE": 0.15797268225085828,
+    "R2": 0.7829176295091905,
+    "negative_predictions": 0
+  },
+  "limitations": "Empirical fit to a spatial residual proxy, not temporal noise. Random holdout evaluates this dataset; it does not establish extrapolation to other scenes or exposure/gain ranges. Negative predictions are not clipped. The validation set was used for degree selection; it is not an independent test set.",
+  "input_csv": "C:\\Users\\lenovo\\Desktop\\智能视觉信息采集\\lab1\\RawData\\scan_2026-09-18_16-04-47_424687\\noise_analysis\\noise_features.csv",
+  "source_records": 696,
+  "accepted_records": 254,
+  "excluded_records": 442,
+  "input_sha256": "ac4024161e9970643ec98d559c3f886b8a8bd07428034701d23fc4e2314f3e67"
+}
