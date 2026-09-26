@@ -1,6 +1,6 @@
 # Lab1 Report
 
-> Group number: 4. The Basic Part retains the recommended outline and requires additional content. The Bonus Part is provided below.
+> Group number: 4.
 
 ## Recommended Submission Structure
 
@@ -9,7 +9,7 @@ The report may follow this outline or use another structure. The results and ana
 ```text
 Lab1_Group4/
 ├── Images/
-├── Code/                   # Include if code was used
+├── Code/
 └── Lab1_Report.pdf
 ```
 
@@ -17,23 +17,97 @@ Lab1_Group4/
 
 ### 1.1 Introduction
 
-To be completed: briefly describe the purpose of the experiment.
+The purpose of this experiment is to learn the operation and image acquisition workflow of the Basler camera using the pylon SDK. Furthermore, it aims to quantitatively investigate how varying exposure time and gain influence fundamental image properties (such as luminance and color saturation) and to establish mathematical models describing their relationships.
 
 ### 1.2 Experiment Setup
 
-To be completed: describe the camera parameter values and other experimental settings.
+* **Hardware & Software Environment:**
+  * **Camera Model:** Basler daA2500-14uc (connected via USB 3.0 interface).
+  * **Software Platform:** Basler pylon Viewer (Developer Mode) and Python image acquisition scripts.
+  * **Target Scene:** A uniformly illuminated planar surface (white wall) under steady ambient illumination to minimize spatial lighting variations.
+
+* **Camera Configuration:**
+  * Automatic exposure was turned off (`Exposure Auto = Off`).
+  * Automatic gain was disabled (`Gain Auto = Off`).
+  * Gamma correction was set to 1.0 to ensure linear sensor response.
+  * The lens focus and aperture were locked during testing to keep optical throughput strictly constant.
+
+* **Sampling Parameters:**
+  * **Exposure Time ($e$):** Sampled across 29 discrete exposure levels spanning from $10\,\mu\text{s}$ to $990{,}000\,\mu\text{s}$.
+  * **Gain ($g$):** Sampled across 24 discrete gain settings ranging from $1\text{ dB}$ up to $24\text{ dB}$.
+  * In total, $29 \times 24 = 696$ image frames were captured across the complete parameter space.
+
 
 ### 1.3 Result and Data Processing
+
+![Exposure-Gain Grid](/IVIA2026/Images/exposure_gain_grid.png)
+*Figure 1: Two-dimensional image matrix across all sampled exposure times and gains (696 frames).*
+
+#### 1. Parameter Grid Visualization
+To comprehensively assess the imaging behavior across the entire parameter space, all $696$ captured images ($29$ exposure times $\times$ $24$ gain levels) were assembled into a two-dimensional image matrix (Figure 1). 
+* The **horizontal axis** represents increasing exposure time from left to right ($10\,\mu\text{s}$ to $990{,}000\,\mu\text{s}$).
+* The **vertical axis** represents increasing gain from top to bottom ($1\text{ dB}$ to $24\text{ dB}$).
+
+As visually demonstrated across the grid:
+* **Left Columns:** The images suffer from severe underexposure due to insufficient exposure time, resulting in near-zero pixel intensities.
+* **Right Columns & Lower-Right Area:** High exposure durations combined with elevated gains drive the sensor into deep saturation, clipping pixel intensities at the 8-bit ceiling ($255$).
+* **Central Transition Region:** The scene details remain well-preserved within the camera's linear dynamic range without significant under- or over-exposure clipping.
+
+#### 2. Data Screening & Feature Extraction
+The image grid clearly highlights the necessity of data screening: including heavily clipped (pure black or saturated white) samples in regression would distort both photometric curves and noise estimations. Therefore, based on mean intensity thresholds and saturation limits, valid frames within the linear dynamic range were retained for quantitative feature extraction.
+
+![Noise and Brightness ROI](/IVIA2026/Images/Analysis/noise_roi.png)
+*Figure 2: Selected Region of Interest (ROI) on the uniform white wall for brightness and noise estimation.*
+
+For each accepted image, a fixed Region of Interest (ROI) spanning $[x: 682 \text{ to } 889,\, y: 415 \text{ to } 830]$ on the uniform white wall was extracted across all frames (Figure 2) to calculate:
+1. **Average Grayscale Luminance ($\bar{Y}$):** The ROI was converted to single-precision float32 and transformed into a grayscale representation using the standard ITU-R luminance weights ($Y = 0.299R + 0.587G + 0.114B$), after which the spatial mean intensity was computed.
+2. **Spatial Noise Standard Deviation ($\hat{\sigma}$):** The high-frequency noise residual was extracted via $N = I_{\text{ROI}} - \text{GaussianBlur}(I_{\text{ROI}})$ with a $5 \times 5$ kernel ($\sigma = 1.0$), and its sample standard deviation ($\text{ddof} = 1$, excluding boundary pixels) was calculated to quantify noise intensity.
 
 To be completed: present the captured images and explain the image and data processing methods used for analysis.
 
 ### 1.4 Analysis and Discussion
 
-To be completed: analyze and discuss the results using graphs, equations, and other supporting evidence.
+![Comparison](/IVIA2026/Images/Analysis/basic_gain_curves.png)
+*Figure 3: Quantitative responses across varying sensor gains: (left) Saturation $S$ and Value $V$ response curves (gain-s/v); (right) Grayscale luminance $Y$ response curve (gain-y).   
+
+#### 1. Mathematical Formulations
+
+The observed curves are governed by the camera hardware's analog signal amplification and standard color space transformations:
+
+* **Analog Voltage Gain ($A$):**
+  Sensor gain $g$ is configured in decibels (dB) in the acquisition metadata. The physical amplification factor $A$ applied to photodiode charges follows the logarithmic definition:
+  $$A = 10^{\frac{g}{20}}$$
+
+* **Grayscale Luminance ($Y$):**
+  Luminance is calculated using the standard ITU-R BT.601 weighted sum implemented in the extraction pipeline:
+  $$Y = 0.299R + 0.587G + 0.114B$$
+
+* **HSV Value ($V$) and Saturation ($S$):**
+  Per the standard definition of the HSV color model, Value reflects the peak channel intensity:
+  $$V = \max(R, G, B)$$
+  Saturation measures the purity of color relative to maximum intensity:
+  $$S = \begin{cases} \frac{\max(R, G, B) - \min(R, G, B)}{\max(R, G, B)}, & \text{if } V \neq 0 \\ 0, & \text{if } V = 0 \end{cases}$$
+
+---
+
+#### 2. Quantitative Curve Analysis & Evidence
+
+##### A. Luminance and Value Responses ($Y$ and $V$)
+* **Exponential Amplification:** In Figure 3, both $V$ (left plot, orange line) and $Y$ (right plot, blue line) climb steadily from approximately $75$ to over $240$ as gain rises from $1\text{ dB}$ to $24\text{ dB}$. 
+* **Nonlinear Acceleration:** In the low-to-medium gain region ($1\text{ dB} \le g \le 18\text{ dB}$), the response curves display an accelerating slope. This upward curvature directly reflects the exponential relationship $A = 10^{\frac{g}{20}}$, where equal step increases in decibels correspond to multiplying signal gains.
+* **Saturation Clipping:** Near the highest gain settings ($g > 22\text{ dB}$), the slope begins to compress as pixel intensities approach the upper boundary of the 8-bit dynamic range ($255$).
+
+##### B. Desaturation Effect ($S$)
+* **Monotonic Decline:** As depicted in Figure 3 (left plot, blue line), saturation $S$ drops continuously from roughly $18$ down toward $3$.
+* **Channel Compression:** Because the ROI corresponds to a painted white wall, baseline color saturation is naturally low. As analog amplification forces $R$, $G$, and $B$ channel readings toward the ceiling limit of $255$, the difference term $\max(R, G, B) - \min(R, G, B)$ contracts relative to $V$. This wash-out effect causes color information to degrade into clipped white, verifying that excessive sensor gain degrades chromatic fidelity.
 
 ### 1.5 Conclusion
 
-To be completed: summarize the conclusions of the basic experiment.
+In this experiment, the quantitative effects of camera exposure and electronic gain on image formation were systematically evaluated using the Basler daA2500-14uc sensor:
+
+1. **Luminance and Gain Dynamics:** Sensor gain $g$ operates on a decibel scale, resulting in an exponential physical amplification ($A = 10^{g/20}$) of the photodiode signal. Consequently, both grayscale luminance $Y$ and HSV Value $V$ exhibit an accelerating nonlinear growth before reaching saturation near the 8-bit dynamic range ceiling ($255$).
+2. **Chromatic Degradation:** Color saturation $S$ degrades monotonically under elevated gain levels. As intense analog amplification drives all primary channels ($R, G, B$) toward the upper clipping boundary, channel disparities vanish, inducing significant white wash-out and loss of color fidelity.
+3. **Engineering Implications:** While increasing sensor gain effectively boosts image visibility in low-light conditions, it compresses dynamic range and destroys color purity. In practical computer vision and robotic acquisition pipelines, optical exposure time and physical aperture should be prioritized to maximize signal-to-noise ratio, reserving digital/electronic gain as a secondary measure.
 
 ## 2. Bonus Part
 
