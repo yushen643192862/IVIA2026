@@ -2,7 +2,7 @@
 
 > Group number: 4.
 
-## Recommended Submission Structure
+## Submission Structure
 
 The report may follow this outline or use another structure. The results and analysis are the main focus.
 
@@ -62,8 +62,6 @@ The image grid clearly highlights the necessity of data screening: including hea
 For each accepted image, a fixed Region of Interest (ROI) spanning $[x: 682 \text{ to } 889,\, y: 415 \text{ to } 830]$ on the uniform white wall was extracted across all frames (Figure 2) to calculate:
 1. **Average Grayscale Luminance ($\bar{Y}$):** The ROI was converted to single-precision float32 and transformed into a grayscale representation using the standard ITU-R luminance weights ($Y = 0.299R + 0.587G + 0.114B$), after which the spatial mean intensity was computed.
 2. **Spatial Noise Standard Deviation ($\hat{\sigma}$):** The high-frequency noise residual was extracted via $N = I_{\text{ROI}} - \text{GaussianBlur}(I_{\text{ROI}})$ with a $5 \times 5$ kernel ($\sigma = 1.0$), and its sample standard deviation ($\text{ddof} = 1$, excluding boundary pixels) was calculated to quantify noise intensity.
-
-To be completed: present the captured images and explain the image and data processing methods used for analysis.
 
 ### 1.4 Analysis and Discussion
 
