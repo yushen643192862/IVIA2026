@@ -69,13 +69,7 @@ Distortion [k1, k2, p1, p2, k3]:
 [-0.541522, 0.342266, 0.004883, -0.003261, -0.957076]
 ```
 
-The default square edge length is 1, so translations and exported 3D coordinates are in **square-edge units**, not millimeters. Measure the physical square size as displayed during capture; confirm equal horizontal/vertical square edges. For example, if the measured size is 20 mm:
-
-```powershell
-python camera_calibration/calibrate.py --images assignment3 --output camera_calibration/results --square-size 20 --unit mm
-```
-
-20 mm is an example, not a measurement of this dataset. A common scale factor changes translation and geometry scale, not intrinsics or rotation. All captures must use consistent square size, camera optics, and sensor mode.
+The square edge length is fixed at **1**. All translations, camera centers, sphere dimensions, and exported PLY coordinates use **one square edge as the unit of length**. No physical size measurement or millimeter conversion is required. The sphere radius is 0.5 units. Keep square display size, camera optics, and sensor mode consistent across captures.
 
 Coordinates satisfy `X_camera = R @ X_board + t`. The first detected inner corner is the board origin; X follows columns and Y follows rows. Camera centers are `C = -R.T @ t`. Rodrigues rotation vectors use radians, not Euler angles. A symmetric chessboard may reverse detected corner ordering; exported poses should not be interpreted as a globally tracked acquisition trajectory.
 
