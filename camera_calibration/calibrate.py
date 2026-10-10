@@ -20,17 +20,13 @@ def main():
     parser.add_argument('--output', type=Path, default=Path('calibration_results'))
     parser.add_argument('--cols', type=int, default=10, help='Inner corner columns')
     parser.add_argument('--rows', type=int, default=7, help='Inner corner rows')
-    parser.add_argument('--square-size', type=float, default=1.0,
-                        help='Physical square edge length; default 1 = square units')
-    parser.add_argument('--unit', default='square', help='Translation unit, e.g. mm')
     args = parser.parse_args()
-    if args.square_size <= 0 or min(args.cols, args.rows) < 2:
-        parser.error('Square size must be positive and corner counts at least 2')
+    if min(args.cols, args.rows) < 2:
+        parser.error('Corner counts must be at least 2')
     paths = sorted(p for p in args.images.iterdir()
                    if p.suffix.lower() in {'.bmp', '.jpg', '.jpeg', '.png', '.tif', '.tiff'})
     obj = np.zeros((args.cols * args.rows, 3), np.float32)
     obj[:, :2] = np.mgrid[0:args.cols, 0:args.rows].T.reshape(-1, 2)
-    obj *= args.square_size
     objects, corners, accepted, rejected = [], [], [], []
     size = None
     args.output.mkdir(parents=True, exist_ok=True)
@@ -76,7 +72,7 @@ def main():
                       'translation': tv.ravel().tolist(),
                       'camera_center_in_board_coordinates': (-R.T @ tv).ravel().tolist()})
     result = {'image_size_wh': list(size), 'board_inner_corners': [args.cols, args.rows],
-              'square_size': args.square_size, 'translation_unit': args.unit,
+              'square_size': 1.0, 'translation_unit': 'square',
               'coordinate_convention': 'X_camera = R * X_board + t; board origin at first detected inner corner, X along columns, Y along rows, Z by right hand rule',
               'camera_matrix': K.tolist(), 'distortion_order': ['k1', 'k2', 'p1', 'p2', 'k3'],
               'distortion_coefficients': dist.ravel().tolist(), 'opencv_rms_px': float(rms),

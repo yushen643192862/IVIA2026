@@ -122,7 +122,7 @@ SD describes variation across sampled subsets, not uncertainty across independen
 python camera_calibration/export_ply.py --calibration camera_calibration/results/calibration.json
 ```
 
-Import `results/calibration_scene.ply` into MeshLab and enable point rendering. Black/white points represent the board, red points represent camera centers, and blue lines indicate frusta.
+Import `camera_calibration/results/calibration_scene.ply` into MeshLab and enable point rendering. Black/white points represent the board, red points represent camera centers, and blue lines indicate frusta.
 
 ## Static sphere AR and combined mesh
 
@@ -138,13 +138,13 @@ This saves projected photographs, `sphere_gallery.jpg`, and `calibration_scene_w
 python camera_calibration/live_sphere.py
 ```
 
-The program uses pypylon continuous latest-frame acquisition, converts frames to BGR, and reads existing intrinsics/distortion from `results/calibration.json`. It detects the board, estimates pose with `solvePnP`, and draws the sphere on each original distorted frame. If the board is not fully detected, the sphere is not drawn.
+The program uses pypylon continuous latest-frame acquisition, converts frames to BGR, and reads existing intrinsics/distortion from `camera_calibration/results/calibration.json`. It detects the board, estimates pose with `solvePnP`, and draws the sphere on each original distorted frame. If the board is not fully detected, the sphere is not drawn.
 
 - Use the same calibrated camera, unchanged focus/focal length and ROI/binning. Close other applications holding the camera connection.
 - The default requested resolution is 2592 × 1944. Basler dimensions must match the requested dimensions. Same-aspect-ratio resizing scales intrinsics, but this is valid only for resizing, not sensor cropping or a changed optical setup.
 - With multiple cameras, select the calibrated camera using `--serial SERIAL_NUMBER` or `--camera 1`.
 - Optional fixed exposure/gain example: `--exposure-us 10000 --gain-db 0`. Adapt these values to lighting; unspecified values retain the camera's current values, with auto exposure/gain disabled.
-- **Q/Esc** quits, **S** saves a snapshot, and **R** toggles recording in `results/live_demo/`.
+- **Q/Esc** quits, **S** saves a snapshot, and **R** toggles recording in `camera_calibration/results/live_demo/`.
 - AVI recording uses a fixed 15 FPS, so playback duration may differ from real elapsed time if actual acquisition/rendering FPS differs.
 
 Offline validation, without connecting a camera:
