@@ -1,0 +1,93 @@
+[
+  {
+    "factor": "image_count",
+    "group": "5",
+    "runs": 10,
+    "n": 5,
+    "train_mean": 2.501247643891964,
+    "validation_mean": 1.524434733185951,
+    "validation_std": 0.15910899743384058,
+    "fx_std": 76.22181643193454,
+    "tilt_mean": 22.253680155288727,
+    "center_distance_mean": 0.1567948083148211,
+    "area_mean": 0.18181095956291543
+  },
+  {
+    "factor": "image_count",
+    "group": "10",
+    "runs": 10,
+    "n": 10,
+    "train_mean": 2.2950686230343993,
+    "validation_mean": 1.3603973475665148,
+    "validation_std": 0.038484294497393184,
+    "fx_std": 26.250903630322274,
+    "tilt_mean": 23.272763854853984,
+    "center_distance_mean": 0.19123179746312907,
+    "area_mean": 0.15947743327661282
+  },
+  {
+    "factor": "image_count",
+    "group": "15",
+    "runs": 1,
+    "n": 15,
+    "train_mean": 2.3548472689227724,
+    "validation_mean": 1.3249299043498248,
+    "validation_std": 0.0,
+    "fx_std": 0.0,
+    "tilt_mean": 21.533449411507753,
+    "center_distance_mean": 0.18979201275376537,
+    "area_mean": 0.16637979934509625
+  },
+  {
+    "factor": "coverage",
+    "group": "central",
+    "runs": 1,
+    "n": 6,
+    "train_mean": 3.002306216497493,
+    "validation_mean": 1.4980732092969267,
+    "validation_std": 0.0,
+    "fx_std": 0.0,
+    "tilt_mean": 16.884372117447263,
+    "center_distance_mean": 0.06375013543750513,
+    "area_mean": 0.23559438228615917
+  },
+  {
+    "factor": "coverage",
+    "group": "peripheral",
+    "runs": 1,
+    "n": 6,
+    "train_mean": 1.3775825355099456,
+    "validation_mean": 1.3873510240886322,
+    "validation_std": 0.0,
+    "fx_std": 0.0,
+    "tilt_mean": 19.900028409262404,
+    "center_distance_mean": 0.3226613872003882,
+    "area_mean": 0.10324643142583041
+  },
+  {
+    "factor": "angle",
+    "group": "low_tilt",
+    "runs": 1,
+    "n": 6,
+    "train_mean": 2.621159665567799,
+    "validation_mean": 3.287662609247963,
+    "validation_std": 0.0,
+    "fx_std": 0.0,
+    "tilt_mean": 8.977846589217307,
+    "center_distance_mean": 0.18327282821586388,
+    "area_mean": 0.17450096193383377
+  },
+  {
+    "factor": "angle",
+    "group": "high_tilt",
+    "runs": 1,
+    "n": 6,
+    "train_mean": 2.466209854983981,
+    "validation_mean": 1.487651731221862,
+    "validation_std": 0.0,
+    "fx_std": 0.0,
+    "tilt_mean": 35.78991651789293,
+    "center_distance_mean": 0.13465730325328087,
+    "area_mean": 0.20090000310036416
+  }
+]

@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+camera_calibration/results/live_demo/*.avi
+camera_calibration/results/live_demo/snapshot_*.jpg
+.DS_Store
+Thumbs.db
