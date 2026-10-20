@@ -1,0 +1,302 @@
+{
+  "saved_at": "2026-10-17T15:34:02.411482+08:00",
+  "pair_index": 6,
+  "files": [
+    "l6.bmp",
+    "r6.bmp"
+  ],
+  "cameras": [
+    {
+      "model": "daA2500-14uc",
+      "serial": "40031417",
+      "Width": 2592,
+      "Height": 1944,
+      "OffsetX": 0,
+      "OffsetY": 0,
+      "PixelFormat": "YCbCr422_8",
+      "ExposureTime": 20000.0,
+      "Gain": 0.0,
+      "Gamma": 1.0,
+      "matched_imaging_settings": [
+        {
+          "feature": "BinningHorizontalMode",
+          "value": "Sum"
+        },
+        {
+          "feature": "BinningVerticalMode",
+          "value": "Average"
+        },
+        {
+          "feature": "BinningHorizontal",
+          "value": 1
+        },
+        {
+          "feature": "BinningVertical",
+          "value": 1
+        },
+        {
+          "feature": "PixelFormat",
+          "value": "YCbCr422_8"
+        },
+        {
+          "feature": "Width",
+          "value": 2592
+        },
+        {
+          "feature": "Height",
+          "value": 1944
+        },
+        {
+          "feature": "OffsetX",
+          "value": 0
+        },
+        {
+          "feature": "OffsetY",
+          "value": 0
+        },
+        {
+          "feature": "ReverseX",
+          "value": false
+        },
+        {
+          "feature": "ReverseY",
+          "value": false
+        },
+        {
+          "feature": "ExposureMode",
+          "value": "Timed"
+        },
+        {
+          "feature": "ExposureAuto",
+          "value": "Off"
+        },
+        {
+          "feature": "ExposureTime",
+          "value": 20000.0
+        },
+        {
+          "feature": "GainAuto",
+          "value": "Off"
+        },
+        {
+          "feature": "BalanceWhiteAuto",
+          "value": "Off"
+        },
+        {
+          "feature": "Gamma",
+          "value": 1.0
+        },
+        {
+          "feature": "AcquisitionMode",
+          "value": "Continuous"
+        },
+        {
+          "feature": "AcquisitionFrameRate",
+          "value": 100000.0
+        },
+        {
+          "feature": "LightSourcePreset",
+          "value": "Daylight5000K"
+        },
+        {
+          "feature": "BslBrightness",
+          "value": 0.0
+        },
+        {
+          "feature": "BslContrast",
+          "value": 0.0
+        },
+        {
+          "feature": "GainSelector=All/Gain",
+          "value": 0.0
+        },
+        {
+          "feature": "GainSelector=All/GainRaw",
+          "value": 8
+        },
+        {
+          "feature": "BlackLevelSelector=All/BlackLevel",
+          "value": 0.0
+        },
+        {
+          "feature": "BlackLevelSelector=All/BlackLevelRaw",
+          "value": 0
+        },
+        {
+          "feature": "BalanceRatioSelector=Red/BalanceRatio",
+          "value": 1.0
+        },
+        {
+          "feature": "BalanceRatioSelector=Green/BalanceRatio",
+          "value": 1.0
+        },
+        {
+          "feature": "BalanceRatioSelector=Blue/BalanceRatio",
+          "value": 1.0
+        },
+        {
+          "feature": "TriggerSelector=FrameStart/TriggerMode",
+          "value": "Off"
+        }
+      ]
+    },
+    {
+      "model": "daA2500-14uc",
+      "serial": "40031433",
+      "Width": 2592,
+      "Height": 1944,
+      "OffsetX": 0,
+      "OffsetY": 0,
+      "PixelFormat": "YCbCr422_8",
+      "ExposureTime": 20000.0,
+      "Gain": 0.0,
+      "Gamma": 1.0,
+      "matched_imaging_settings": [
+        {
+          "feature": "BinningHorizontalMode",
+          "value": "Sum"
+        },
+        {
+          "feature": "BinningVerticalMode",
+          "value": "Average"
+        },
+        {
+          "feature": "BinningHorizontal",
+          "value": 1
+        },
+        {
+          "feature": "BinningVertical",
+          "value": 1
+        },
+        {
+          "feature": "PixelFormat",
+          "value": "YCbCr422_8"
+        },
+        {
+          "feature": "Width",
+          "value": 2592
+        },
+        {
+          "feature": "Height",
+          "value": 1944
+        },
+        {
+          "feature": "OffsetX",
+          "value": 0
+        },
+        {
+          "feature": "OffsetY",
+          "value": 0
+        },
+        {
+          "feature": "ReverseX",
+          "value": false
+        },
+        {
+          "feature": "ReverseY",
+          "value": false
+        },
+        {
+          "feature": "ExposureMode",
+          "value": "Timed"
+        },
+        {
+          "feature": "ExposureAuto",
+          "value": "Off"
+        },
+        {
+          "feature": "ExposureTime",
+          "value": 20000.0
+        },
+        {
+          "feature": "GainAuto",
+          "value": "Off"
+        },
+        {
+          "feature": "BalanceWhiteAuto",
+          "value": "Off"
+        },
+        {
+          "feature": "Gamma",
+          "value": 1.0
+        },
+        {
+          "feature": "AcquisitionMode",
+          "value": "Continuous"
+        },
+        {
+          "feature": "AcquisitionFrameRate",
+          "value": 100000.0
+        },
+        {
+          "feature": "LightSourcePreset",
+          "value": "Daylight5000K"
+        },
+        {
+          "feature": "BslBrightness",
+          "value": 0.0
+        },
+        {
+          "feature": "BslContrast",
+          "value": 0.0
+        },
+        {
+          "feature": "GainSelector=All/Gain",
+          "value": 0.0
+        },
+        {
+          "feature": "GainSelector=All/GainRaw",
+          "value": 8
+        },
+        {
+          "feature": "BlackLevelSelector=All/BlackLevel",
+          "value": 0.0
+        },
+        {
+          "feature": "BlackLevelSelector=All/BlackLevelRaw",
+          "value": 0
+        },
+        {
+          "feature": "BalanceRatioSelector=Red/BalanceRatio",
+          "value": 1.0
+        },
+        {
+          "feature": "BalanceRatioSelector=Green/BalanceRatio",
+          "value": 1.0
+        },
+        {
+          "feature": "BalanceRatioSelector=Blue/BalanceRatio",
+          "value": 1.0
+        },
+        {
+          "feature": "TriggerSelector=FrameStart/TriggerMode",
+          "value": "Off"
+        }
+      ]
+    }
+  ],
+  "frames": [
+    {
+      "received_at": "2026-10-17T15:34:02.162+08:00",
+      "camera_timestamp": 2135574194125,
+      "block_id": 1404,
+      "software_white_balance_bgr": [
+        1.0142857142857142,
+        0.9861111111111112,
+        1.0047169811320755
+      ]
+    },
+    {
+      "received_at": "2026-10-17T15:34:02.228+08:00",
+      "camera_timestamp": 2137512372375,
+      "block_id": 1405,
+      "software_white_balance_bgr": [
+        1.0339805825242718,
+        0.9102564102564102,
+        1.065
+      ]
+    }
+  ],
+  "host_receive_difference_ms": 65.49190000805538,
+  "note": "Latest displayed frames; independent free-running cameras. Host receive times and camera timestamps do not prove exposure synchronization."
+}

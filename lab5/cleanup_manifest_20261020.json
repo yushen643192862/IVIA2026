@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-20",
+  "scope": "lab5 only",
+  "deleted_count": 17,
+  "freed_bytes": 121975878,
+  "preserved_final_ply_sha256": {
+    "results\\session_153222_vertical40\\final.ply": "ce3bd790bce79ab4694a0ab08f885db0f3f203894d802cba93d2a3eb58cb14ff"
+  },
+  "parameter_json_exports": [
+    {
+      "from": "results\\session_153222_vertical40\\geometry_used.npz",
+      "to": "results\\session_153222_vertical40\\geometry_used.json"
+    }
+  ],
+  "lab4_unchanged": true,
+  "deleted": [
+    {
+      "path": "test_capture_settings.py",
+      "bytes": 4759
+    },
+    {
+      "path": "test_periodic_matching.py",
+      "bytes": 1850
+    },
+    {
+      "path": "__pycache__\\capture_stereo.cpython-313.pyc",
+      "bytes": 34496
+    },
+    {
+      "path": "__pycache__\\reconstruct_structured.cpython-313.pyc",
+      "bytes": 42451
+    },
+    {
+      "path": "__pycache__\\test_capture_settings.cpython-313.pyc",
+      "bytes": 10946
+    },
+    {
+      "path": "__pycache__\\test_periodic_matching.cpython-313.pyc",
+      "bytes": 4352
+    },
+    {
+      "path": "results\\session_153222_vertical40\\colored_cloud.ply",
+      "bytes": 11482401
+    },
+    {
+      "path": "results\\session_153222_vertical40\\depth.npy",
+      "bytes": 11059328
+    },
+    {
+      "path": "results\\session_153222_vertical40\\disparity.npy",
+      "bytes": 11059328
+    },
+    {
+      "path": "results\\session_153222_vertical40\\geometry_used.npz",
+      "bytes": 3396
+    },
+    {
+      "path": "results\\session_153222_vertical40\\horizontal_projector_coordinate.npy",
+      "bytes": 22118528
+    },
+    {
+      "path": "results\\session_153222_vertical40\\matched_right_x.npy",
+      "bytes": 11059328
+    },
+    {
+      "path": "results\\session_153222_vertical40\\matched_right_y.npy",
+      "bytes": 11059328
+    },
+    {
+      "path": "results\\session_153222_vertical40\\skull_cloud.ply",
+      "bytes": 8092603
+    },
+    {
+      "path": "results\\session_153222_vertical40\\temporal_cost.npy",
+      "bytes": 11059328
+    },
+    {
+      "path": "results\\session_153222_vertical40\\valid_mask.npy",
+      "bytes": 2764928
+    },
+    {
+      "path": "results\\session_153222_vertical40\\vertical_search_offset.npy",
+      "bytes": 22118528
+    }
+  ],
+  "note": "Original captures, patterns, projection PPTX, production code, JSON metadata, reports and grayscale depth previews preserved. Numeric intermediates need recomputation for further processing."
+}
