@@ -1,0 +1,4 @@
+image,phone,yaw_deg,pitch_deg,fixture_id,notes
+phoneA/0001.jpg,phoneA,0,0,fixture_A,example only
+phoneB/0001.jpg,phoneB,0,0,fixture_A,example only
+phoneA/0002.jpg,phoneA,15,0,fixture_A,example only

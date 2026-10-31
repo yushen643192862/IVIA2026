@@ -1,0 +1,3 @@
+# Optional local foreground segmentation used by segment_subject_model.py.
+# NumPy and OpenCV are supplied by ../requirements.txt.
+rembg[cpu]==2.0.86
