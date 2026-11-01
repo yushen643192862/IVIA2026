@@ -1,36 +1,33 @@
-from fastapi import FastAPI, HTTPException
-import uvicorn
+import time
 from hardware_api import ScannerHardware
 
-app = FastAPI(title="3D扫描仪远程控制服务端")
-
-# ⚠️ 这里写你自己电脑连 ESP32 的端口
+# 1. 实例化硬件并连接（改成你的 COM 口）
 bot = ScannerHardware(port='COM3')
 
-@app.on_event("startup")
-def startup_event():
-    bot.connect()
+if bot.connect():
+    try:
+        print("\n--- 开始本地控制 ---")
 
-@app.on_event("shutdown")
-def shutdown_event():
-    bot.close()
+        # 2. 像调普通 Python 函数一样，随意发指令
+        bot.rotate_pan(90)   # 转 90 度
+        time.sleep(1)
+        
+        bot.move_tilt(15)    # 上升 15 毫米
+        time.sleep(1)
+        
+        bot.rotate_pan(180)  # 再转 180 度
+        time.sleep(1)
+        
+        bot.move_tilt(-15)   # 下降 15 毫米
 
-@app.get("/rotate")
-def api_rotate(degrees: float):
-    """别人调用的转盘接口"""
-    success = bot.rotate_pan(degrees)
-    if success:
-        return {"status": "success"}
-    raise HTTPException(status_code=1000, detail="硬件超时")
+        # 3. 你可以随便写 for 循环
+        # for i in range(4):
+        #     bot.rotate_pan(i * 90)
+        #     bot.move_tilt(10)
+        #     time.sleep(1)
 
-@app.get("/move")
-def api_move(mm: float):
-    """别人调用的滑台接口"""
-    success = bot.move_tilt(mm)
-    if success:
-        return {"status": "success"}
-    raise HTTPException(status_code=1000, detail="硬件超时")
+        print("\n🎉 动作全部执行完毕！")
 
-if __name__ == "__main__":
-    # 启动服务器，监听所有网络接口，端口 8000
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    finally:
+        # 4. 无论程序是否报错，最后都要安全关闭串口
+        bot.close()
